@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ngx-flow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fafafa;
+  outline: none;
+}
+
+.ngx-flow__viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.ngx-flow__transform {
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.ngx-flow__edges {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ngx-flow__nodes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ngx-flow__pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: grab;
+  z-index: 1;
+}
+
+.ngx-flow__pane:active {
+  cursor: grabbing;
+}

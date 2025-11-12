@@ -1,0 +1,39 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title() }}</h1>
+    <div class="controls">
+      <button (click)="addNode()">Add Node</button>
+      <button (click)="deleteSelectedNodes()">Delete Selected</button>
+    </div>
+  </header>
+
+  <div class="flow-container">
+    <ngx-flow
+      [nodes]="nodes()"
+      [edges]="edges()"
+      (onNodesChange)="onNodesChange($event)"
+      (onEdgesChange)="onEdgesChange($event)"
+      (onConnect)="onConnect($event)"
+      [nodesDraggable]="true"
+      [nodesConnectable]="true"
+      [elementsSelectable]="true"
+      [snapToGrid]="true"
+      [snapGrid]="[15, 15]"
+      [minZoom]="0.5"
+      [maxZoom]="2"
+      [fitView]="true"
+      [showBackground]="true"
+      [showMinimap]="true"
+      [showControls]="true"
+      [zoomOnScroll]="true"
+    >
+    </ngx-flow>
+  </div>
+
+  <footer class="app-footer">
+    <p>
+      <strong>Controls:</strong> Drag nodes to move • Scroll to zoom • Click to select •
+      Delete key to remove • Shift+Click for multi-select
+    </p>
+  </footer>
+</div>

@@ -1,0 +1,75 @@
+<div
+  #flowContainer
+  class="ngx-flow"
+  (wheel)="onWheel($event)"
+  (keydown)="onKeyDown($event)"
+  tabindex="0"
+>
+  <!-- Background -->
+  @if (showBackground) {
+    <ngx-flow-background />
+  }
+
+  <!-- Viewport Container -->
+  <div class="ngx-flow__viewport">
+    <!-- Transform Container -->
+    <div class="ngx-flow__transform" [style.transform]="transform">
+      <!-- Edges Layer -->
+      <svg class="ngx-flow__edges">
+        <defs>
+          <!-- Marker definitions for arrows -->
+          <marker
+            id="ngx-flow-arrowclosed"
+            markerWidth="12"
+            markerHeight="12"
+            viewBox="-10 -10 20 20"
+            refX="0"
+            refY="0"
+            markerUnits="strokeWidth"
+            orient="auto"
+          >
+            <polyline
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
+              fill="currentColor"
+              points="-5,-4 0,0 -5,4 -5,-4"
+            />
+          </marker>
+        </defs>
+
+        @for (edge of internalEdges; track edge.id) {
+          <g ngx-flow-edge-wrapper [edge]="edge"></g>
+        }
+      </svg>
+
+      <!-- Nodes Layer -->
+      <div class="ngx-flow__nodes">
+        @for (node of visibleNodes; track node.id) {
+          <ngx-flow-node-wrapper [node]="node" />
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Pane (for background clicks) -->
+  <div
+    class="ngx-flow__pane"
+    (click)="onPaneClick($event)"
+    (dblclick)="onPaneDoubleClick($event)"
+  ></div>
+
+  <!-- Minimap -->
+  @if (showMinimap) {
+    <ngx-flow-minimap />
+  }
+
+  <!-- Controls -->
+  @if (showControls) {
+    <ngx-flow-controls />
+  }
+
+  <!-- Content Projection -->
+  <ng-content></ng-content>
+</div>
